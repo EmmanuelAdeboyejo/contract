@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TTTLCO Letter</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 40px;
+      color: #222;
+    }
+    .letter {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .header, .footer {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .subject {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin: 20px 0;
+      text-decoration: underline;
+    }
+    .signature {
+      margin-top: 40px;
+    }
+    .signature img {
+      height: 80px;
+    }
+    button {
+      color: brown;
+      box-shadow: #222;
+      animation: spin 4s linear infinite;
+      z-index: 100;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="letter">
+    <div class="header">
+      <strong>The Triple Threat Law Contract Organisation (TTTLCO)</strong><br>
+      Giwa Eka, Wamako, Sokoto State, Nigeria<br>
+      <strong>Date:</strong> <span id="date"></span>
+    </div>
+    <div class="receiver">
+      <strong>To:</strong><br>
+      MerZZ20112<br>
+      Shina Shownet<br>
+      Giwa Eka, Wamako, Sokoto State, Nigeria
+    </div>
+    <div class="subject">Subject: Signation of YouTube Channel</div>
+    <div class="body">
+      Dear MerZZ20112 and Shina Shownet,<br><br>
+      We acknowledge your interest in joining <strong>The Triple Threat (TTT)</strong>, an entity proudly managed and owned by <strong>The Triple Threat Law Contract Organisation (TTTLCO)</strong>.<br><br>
+      This letter serves as a formal recognition of your request to affiliate your YouTube content and identity under the TTT name. We are pleased to receive your signation proposal and appreciate your intention to be part of our growing creative network.<br><br>
+      As the official owners of <strong>The Triple Threat</strong>, TTTLCO retains full control and rights over the name, branding, and management of all content under the TTT label. Your inclusion, once finalized, will be under terms that ensure mutual respect, proper conduct, and creative collaboration within the scope of our legal and creative policies.<br><br>
+      By signing this agreement, you affirm that:
+      <ul>
+        <li>You understand and accept TTTLCO’s ownership of The Triple Threat brand and channel.</li>
+        <li>You agree to operate under the guidance and policies provided by TTTLCO.</li>
+        <li>You will represent the TTT brand with professionalism and creativity.</li>
+      </ul>
+      Please reply to this letter with your confirmation, and we will proceed with the onboarding process.<br><br>
+      We look forward to building great content together.<br><br>
+      Yours sincerely,<br><br>
+      <strong>Form: The Triple Threat Law Contract Organisation (TTTLCO)</strong><br>
+        <form action="index - Copy.html">
+    <button>Click me to join</button>
+   </form>
+    </div>
+    <div class="signature">
+      <img src="a;;e.png" alt="TTTLCO Signature"><br>
+      <em>Official Signation Symbol</em>
+    </div>
+  </div>
+  <script>
+    // Automatically display today's date
+    const today = new Date();
+    const dateElement = document.getElementById('date');
+    dateElement.textContent = today.toDateString();
+  </script>
+</body>
+</html>
