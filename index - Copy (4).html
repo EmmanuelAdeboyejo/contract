@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trick English Test - TTT Tier</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      padding: 20px;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    #timer {
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+      text-align: center;
+    }
+    #result {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 30px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Trick English Test 🧠</h1>
+    <p style="text-align:center;">Answer all 15 questions in under <strong>7 minutes</strong>. You must get 10 or more correct to pass.</p>
+    <div id="timer">Time Remaining: 07:00</div>
+    <form id="quizForm">
+      <div id="questions"></div>
+      <button type="button" onclick="gradeTest()">Submit</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const englishQuestions = [
+      ["What is the plural of 'mouse'?", ["mouses", "mices", "mice", "mousees"], 2],
+      ["Which word is spelled correctly?", ["definately", "definitely", "defanitely", "defenitely"], 1],
+      ["Which of these is a synonym for 'strange'?", ["familiar", "odd", "regular", "normal"], 1],
+      ["Which sentence is correct?", ["Their going to school.", "There going to school.", "They’re going to school.", "Theyre going too school."], 2],
+      ["Choose the correct word: He _____ the ball.", ["throwed", "thrown", "throws", "threw"], 3],
+      ["Identify the adjective: The quick brown fox jumps.", ["fox", "jumps", "quick", "the"], 2],
+      ["Choose the correct sentence.", ["Its raining outside.", "It’s raining outside.", "Its’ raining outside.", "Its raining, outside"], 1],
+      ["Which is an example of a homophone?", ["plain / plane", "book / booked", "car / cart", "sing / sung"], 0],
+      ["Fill in the blank: She is _____ than her sister.", ["tall", "tallest", "taller", "more tall"], 2],
+      ["What is the past tense of 'run'?", ["runned", "ran", "run", "runneded"], 1],
+      ["Which sentence uses 'to' correctly?", ["I want too go.", "Let’s go to the park.", "That’s to many!", "He is going too home."], 1],
+      ["Choose the correct pronoun: _____ went to the store.", ["Her", "Them", "She", "Me"], 2],
+      ["What figure of speech is: 'The wind whispered'?", ["Simile", "Metaphor", "Hyperbole", "Personification"], 3],
+      ["Choose the correct option: I have _____ apples.", ["two", "to", "too", "tue"], 0],
+      ["Identify the subject: The teacher gave the students homework.", ["teacher", "students", "homework", "gave"], 0]
+    ];
+
+    const container = document.getElementById("questions");
+    englishQuestions.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.classList.add("question");
+      div.innerHTML = `<p><strong>Q${i + 1}: ${q[0]}</strong></p>`;
+      q[1].forEach((opt, j) => {
+        div.innerHTML += `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`;
+      });
+      container.appendChild(div);
+    });
+
+    function gradeTest() {
+      let score = 0;
+      for (let i = 0; i < englishQuestions.length; i++) {
+        const selected = document.querySelector(`input[name='q${i}']:checked`);
+        if (selected && parseInt(selected.value) === englishQuestions[i][2]) {
+          score++;
+        }
+      }
+      document.getElementById("quizForm").style.display = "none";
+      const result = document.getElementById("result");
+      if (score >= 10) {
+        result.innerHTML = `✅ You passed with ${score}/15. Redirecting...`;
+        setTimeout(() => {
+          window.location.href = "file:///C:/Users/Hp/Desktop/cps%20per%20second/index%20-%20Copy%20(5).html";
+        }, 3000);
+      } else {
+        result.innerHTML = `❌ You failed with ${score}/15.`;
+      }
+    }
+
+    // Timer logic
+    let duration = 5 * 60; // 5 minutes in seconds
+    const timerEl = document.getElementById("timer");
+    const countdown = setInterval(() => {
+      const minutes = String(Math.floor(duration / 60)).padStart(2, '0');
+      const seconds = String(duration % 60).padStart(2, '0');
+      timerEl.textContent = `Time Remaining: ${minutes}:${seconds}`;
+      if (--duration < 0) {
+        clearInterval(countdown);
+        gradeTest();
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

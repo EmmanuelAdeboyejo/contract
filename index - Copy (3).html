@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prove Yourself Worthy - TTT Tier</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+      padding: 30px;
+    }
+    .container {
+      max-width: 1000px;
+      background: white;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 25px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+    .result {
+      text-align: center;
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+    #timer {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: red;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🧪 Prove Yourself Worthy</h1>
+  <p style="text-align:center;">You are about to start a tier test. You must score at least <strong>10/15</strong> to continue. You have <strong>30 minutes</strong>.</p>
+
+  <div id="intro">
+    <button onclick="startTier()">I Will Prove It</button>
+  </div>
+
+  <div id="timer" class="hidden">Time Remaining: 30:00</div>
+
+  <form id="quizForm" class="hidden">
+    <div id="questions"></div>
+    <button type="button" onclick="gradeTest()">Submit</button>
+  </form>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  const questionBank = [
+    // Each question: [question, options[], correctIndex]
+    ["What is the LCM of 12 and 18?", ["36", "24", "72", "12"], 0],
+    ["Simplify: 3(2x + 4) − 5x", ["x + 12", "x + 4", "x + 8", "x + 6"], 1],
+    ["Convert 0.75 to a fraction.", ["3/4", "1/2", "2/3", "1/4"], 0],
+    ["Solve: 5x − 3 = 2x + 6", ["x = 3", "x = 2", "x = 1", "x = 4"], 0],
+    ["Area of rectangle 8cm x 5cm?", ["40cm²", "30cm²", "13cm²", "25cm²"], 0],
+    ["Mean of 6,8,10,12,14", ["10", "9", "8", "12"], 0],
+    ["Convert 105° to radians.", ["7π/12", "3π/4", "5π/6", "π/2"], 0],
+    ["Profit: 3 pens bought ₦100, sold ₦120 each", ["₦60", "₦30", "₦90", "₦20"], 0],
+    ["Square root of 121?", ["11", "10", "13", "9"], 0],
+    ["25% of ₦400?", ["₦100", "₦150", "₦200", "₦250"], 0],
+    ["Factorize: x² − 9", ["(x−3)(x+3)", "(x+9)(x−1)", "(x+3)²", "(x−9)(x+1)"], 0],
+    ["Express 2/5 as percentage.", ["40%", "25%", "20%", "45%"], 0],
+    ["Volume of cube with edge 4cm", ["64cm³", "16cm³", "48cm³", "8cm³"], 0],
+    ["Divide 180° in 2:3", ["72°, 108°", "90°, 90°", "60°, 120°", "100°, 80°"], 0],
+    ["₦3600 reduced by 10%?", ["₦3240", "₦3300", "₦3000", "₦3500"], 0],
+    // Add 45 more questions for English, Science, Vocational...
+  ];
+
+  function startTier() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("quizForm").classList.remove("hidden");
+    document.getElementById("timer").classList.remove("hidden");
+    loadQuestions();
+    startTimer(30 * 60); // 30 minutes in seconds
+  }
+
+  function loadQuestions() {
+    const container = document.getElementById("questions");
+    container.innerHTML = "";
+    questionBank.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.classList.add("question");
+      div.innerHTML = `<p><strong>Q${i + 1}:</strong> ${q[0]}</p>`;
+      q[1].forEach((opt, j) => {
+        div.innerHTML += `
+          <label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>
+        `;
+      });
+      container.appendChild(div);
+    });
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 0; i < questionBank.length; i++) {
+      const selected = document.querySelector(`input[name='q${i}']:checked`);
+      if (selected && parseInt(selected.value) === questionBank[i][2]) {
+        score++;
+      }
+    }
+    const result = document.getElementById("result");
+    if (score >= 10) {
+      result.textContent = `✅ Access Granted — You scored ${score}/15.`;
+      result.style.color = "green";
+     setTimeout(() => {
+    window.location.href = "file:///C:/Users/Hp/Desktop/cps%20per%20second/index%20-%20Copy%20(4).html";
+    }, 3000); 
+    } else {
+      result.textContent = `❌ Access Denied — You scored ${score}/15.`;
+      result.style.color = "red";
+    }
+  }
+
+ let duration = 7 * 60; // 7 minutes in seconds
+    const timerDisplay = document.getElementById('timer');
+    const doneMessage = document.getElementById('done');
+
+    const countdown = setInterval(() => {
+      const minutes = String(Math.floor(duration / 60)).padStart(2, '0');
+      const seconds = String(duration % 60).padStart(2, '0');
+      timerDisplay.textContent = `${minutes}:${seconds}`;
+      
+      if (--duration < 0) {
+        clearInterval(countdown);
+        timerDisplay.style.display = 'none';
+        doneMessage.style.display = 'block';
+      }
+    }, 1000);
+</script>
+
+</body>
+</html>

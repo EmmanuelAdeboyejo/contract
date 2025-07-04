@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Science & Computer Test - TTT Tier</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      padding: 20px;
+    }
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    #timer {
+      text-align: center;
+      font-size: 20px;
+      color: red;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    #result {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 30px;
+    }
+    button {
+      display: block;
+      margin: auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0288d1;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0277bd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Science & Computer Quiz 🔬💻</h1>
+    <p style="text-align:center;">You have <strong>2 minutes</strong> to answer 15 questions. Score 10 or more to pass.</p>
+    <div id="timer">Time Remaining: 02:00</div>
+    <form id="quizForm">
+      <div id="questions"></div>
+      <button type="button" onclick="gradeTest()">Submit</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const questions = [
+      ["What organ pumps blood throughout the human body?", ["Liver", "Brain", "Heart", "Lung"], 2],
+      ["Name three parts of a plant.", ["Leaf, stem, root", "Seed, fruit, honey", "Soil, leaf, water", "Light, air, stem"], 0],
+      ["What gas do plants release during photosynthesis?", ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"], 0],
+      ["One function of the skeleton is?", ["Digest food", "Pump blood", "Support the body", "Transport oxygen"], 2],
+      ["Boiling point of water in °C?", ["100°C", "90°C", "80°C", "110°C"], 0],
+      ["Function of the CPU in a computer?", ["Store files", "Display images", "Process data", "Print documents"], 2],
+      ["Which simple machine is used to lift heavy objects?", ["Pulley", "Hammer", "Rope", "Broom"], 0],
+      ["Two natural sources of light?", ["Sun and fire", "Bulb and torch", "TV and lamp", "Car and battery"], 0],
+      ["Main source of energy for Earth?", ["Wind", "Sun", "Water", "Electricity"], 1],
+      ["Example of living and non-living thing?", ["Dog and rock", "Chair and pen", "Plant and radio", "Bag and ball"], 0],
+      ["Three states of matter?", ["Solid, liquid, gas", "Metal, stone, fire", "Water, ice, air", "Atom, mass, shape"], 0],
+      ["Full meaning of ICT?", ["International Cable Transmission", "Information Communication Technology", "Internet Computer Tools", "Input Control Terminal"], 1],
+      ["One type of computer storage device?", ["Monitor", "CPU", "Hard Drive", "Mouse"], 2],
+      ["Difference between hardware and software?", ["Hardware is touchable, software is not", "Software is hard", "Hardware runs faster", "Software can’t be deleted"], 0],
+      ["What is a browser used for?", ["Watching movies", "Editing code", "Browsing the internet", "Printing documents"], 2]
+    ];
+
+    const container = document.getElementById("questions");
+    questions.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.classList.add("question");
+      div.innerHTML = `<p><strong>Q${i + 1}:</strong> ${q[0]}</p>`;
+      q[1].forEach((opt, j) => {
+        div.innerHTML += `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`;
+      });
+      container.appendChild(div);
+    });
+
+    function gradeTest() {
+      let score = 0;
+      for (let i = 0; i < questions.length; i++) {
+        const selected = document.querySelector(`input[name='q${i}']:checked`);
+        if (selected && parseInt(selected.value) === questions[i][2]) {
+          score++;
+        }
+      }
+      document.getElementById("quizForm").style.display = "none";
+      const result = document.getElementById("result");
+      if (score >= 10) {
+        result.innerHTML = `✅ You passed with ${score}/15. Redirecting...`;
+        setTimeout(() => {
+          window.location.href = "file:///C:/Users/Hp/Desktop/cps%20per%20second/index%20-%20Copy%20(6).html";
+        }, 3000);
+      } else {
+        result.innerHTML = `❌ You failed with ${score}/15.`;
+      }
+    }
+
+    // 5-minute timer
+    let duration = 5 * 60;
+    const timer = document.getElementById("timer");
+    const countdown = setInterval(() => {
+      const minutes = String(Math.floor(duration / 60)).padStart(2, '0');
+      const seconds = String(duration % 60).padStart(2, '0');
+      timer.textContent = `Time Remaining: ${minutes}:${seconds}`;
+      if (--duration < 0) {
+        clearInterval(countdown);
+        gradeTest();
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

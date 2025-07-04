@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TTTLCO Contract Agreement</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+      padding: 40px;
+      line-height: 1.6;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 1000px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    #speakButton, #signButton {
+      display: block;
+      margin: 30px auto;
+      padding: 15px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #speakButton {
+      background-color: #2196f3;
+      color: #fff;
+    }
+    #signButton {
+      background-color: #4caf50;
+      color: white;
+    }
+    #signButton:disabled {
+      background-color: #9e9e9e;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>📜 Triple Threat TTTLCO Official Contract Page</h1>
+
+  <p id="contractText">
+    Welcome to The Triple Threat Law Contract Organisation, known shortly as TTTLCO. We are the full creators, owners,
+    and managers of The Triple Threat (TTT) YouTube Network and its community. This is an official agreement page,
+    and it contains all the critical rules, responsibilities, expectations, benefits, and consequences that any member
+    must agree to before signing.
+
+    TTT is an entertaining, educational, and problem-solving group of content creators. We strive to inspire creativity,
+    promote fun challenges, educational insights, and team bonding through digital platforms like YouTube. We engage
+    audiences with exciting gameplay, community interaction, and real-time events.
+
+    As a member of the TTT system, you are required to:
+    <br><br>
+    ✅ Appear online at least **four times a week**<br>
+    ✅ Spend a minimum of **2 hours daily** on TTT activities<br>
+    ✅ Respect all members and never reveal their **real identities**<br>
+    ✅ **Avoid** any fraud, scam, offensive, or insultive behavior<br>
+    ✅ Stay **active** and contribute regularly in videos, challenges, and team discussions<br>
+
+    📦 Your rewards include:<br>
+    - Shared YouTube **fame** with the entire team<br>
+    - **Monthly opportunities** for public appearances and sponsorships<br>
+    - 💰 Paid according to subscribers (e.g., 1000 subs = ₦20,000 per 6 months)<br>
+
+    ❗ If you break any of these rules, here are the consequences:<br>
+    - You will be **kicked out** of TTT immediately<br>
+    - You will be **exposed online** as untrustworthy<br>
+    - You will be **forced to return any money earned** or risk having your account accessed/hacked<br>
+
+    The full contract goes beyond YouTube. It includes code of conduct, responsibility over content, community
+    engagement, copyrights, creative freedom, and discipline. You will be added to internal TTT groups and must be
+    responsible, loyal, and focused.
+
+    We do **not tolerate laziness**, and fake members will be banned permanently.
+
+    All TTT projects are serious. Whether you're doing role-play, tutorials, competitions, or announcements, it must be
+    done with quality. TTTLCO has the power to review your participation, behavior, and progress every 30 days.
+
+    TTTLCO members who show high-level creativity will earn bonuses. All data and content are protected. Any leak,
+    theft, or external sharing of private media will result in suspension and legal action.
+
+    🚀 The future of TTT includes public meetups, exclusive team training, interviews, social recognition, gaming
+    tournaments, and possibly international collaborations.
+
+    If you agree with everything, let the bot read this contract **out loud** and after it's done speaking, you'll be
+    able to click "Sign In" to continue. 
+
+    When you finish, please:
+    <br>👉 Send this link to your leader: <a href="https://meet.google.com/cze-kcyd-cxg" target="_blank">https://meet.google.com/cze-kcyd-cxg</a>
+    <br>📱 Contact us through WhatsApp
+    <br>👍 Don't forget to <strong>subscribe</strong>, <strong>like</strong>, and <strong>ring that notification bell</strong> to stay updated!
+  </p>
+
+  <button id="speakButton">🔊 Read Contract Aloud</button>
+  <button id="signButton" disabled onclick="window.location.href='file:///C:/Users/Hp/Desktop/cps%20per%20second/index%20-%20Copy%20(8).html'">✅ Sign In</button>
+</div>
+
+<script>
+  const speakButton = document.getElementById('speakButton');
+  const signButton = document.getElementById('signButton');
+  const contract = document.getElementById('contractText').innerText;
+
+  speakButton.onclick = () => {
+    speakButton.disabled = true;
+    const utterance = new SpeechSynthesisUtterance(contract);
+    utterance.rate = 0.8;
+    utterance.pitch = 0.8;
+    utterance.volume = 100;
+    speechSynthesis.speak(utterance);
+
+    utterance.onend = () => {
+      signButton.disabled = false;
+    };
+  };
+</script>
+</body>
+</html>
